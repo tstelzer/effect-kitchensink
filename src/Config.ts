@@ -14,8 +14,8 @@ export function createService<T>({
     envParser,
     defaults,
 }: {
-    fileParser: z.ZodType<T, z.ZodTypeDef, unknown>;
-    filePath: string;
+    fileParser?: z.ZodType<T, z.ZodTypeDef, unknown>;
+    filePath?: string;
     envParser?: z.ZodType<T, z.ZodTypeDef, unknown>;
     defaults?: Partial<T>;
 }): {
@@ -23,17 +23,18 @@ export function createService<T>({
     Service: Tag<T>;
 } {
     const Service = Tag<T>();
-    const parseFile = Parser.fromZod(fileParser);
-    const parseEnv = envParser ? Parser.fromZod(envParser) : undefined;
+
+    const parseFile =  (filePath !== undefined && fileParser !== undefined) ? Parser.fromZod(fileParser) : undefined;
+    const parseEnv = envParser !== undefined ? Parser.fromZod(envParser) : undefined;
 
     const createLayer = () =>
         Layer.fromEffect<T>(Service)(
             Effect.gen(function* ($) {
-                const fromFile = yield* $(
+                const fromFile = (parseFile !== undefined && filePath !== undefined) ? yield* $(
                     pipe(readJsonSync(filePath), Effect.flatMap(parseFile)),
-                );
+                ) : {};
 
-                const fromEnv = parseEnv ? yield* $(parseEnv(process.env)) : {};
+                const fromEnv = parseEnv !== undefined ? yield* $(parseEnv(process.env)) : {};
 
                 return mergeDeep(mergeDeep(defaults, fromFile), fromEnv) as T;
             }),
