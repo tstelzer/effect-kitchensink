@@ -1,5 +1,6 @@
 import {z} from 'zod';
-import {pipe, Context, Layer, Effect} from 'effect';
+import {pipe, Layer, Effect} from 'effect';
+import {Tag} from '@fp-ts/data/Context';
 import createDeepMerge from '@fastify/deepmerge';
 
 import {Parser} from './zod.js';
@@ -19,9 +20,9 @@ export function createService<T>({
     defaults?: Partial<T>;
 }): {
     createLayer: () => Layer.Layer<never, Error, T>;
-    Service: Context.Tag<T>;
+    Service: Tag<T>;
 } {
-    const Service = Context.Tag<T>();
+    const Service = Tag<T>();
     const parseFile = Parser.fromZod(fileParser);
     const parseEnv = envParser ? Parser.fromZod(envParser) : undefined;
 
