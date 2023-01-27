@@ -1,0 +1,86 @@
+{
+    "settings": {
+        "import/internal-regex": "^@org/*"
+    },
+    "env": {
+        "browser": false,
+        "es2020": true,
+        "node": true
+    },
+    "plugins": [
+        "prettier",
+        "@typescript-eslint",
+        "import",
+        "unicorn"
+    ],
+    "ignorePatterns": ["**/dist/*", "node_modules"],
+    "extends": [
+        "plugin:json/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "impliedStrict": true,
+            "experimentalObjectRestSpread": true
+        },
+        "ecmaVersion": 2020,
+        "useJSXTextNode": false,
+        "jsxPragma": null,
+        "sourceType": "module",
+        "lib": ["ES2020", "dom"],
+        "tsconfigRootDir": ".",
+        "warnOnUnsupportedTypeScriptVersion": false
+    },
+    "rules": {
+        "prettier/prettier": "error",
+        "no-const-assign": "warn",
+        "no-this-before-super": "warn",
+        "no-undef": "off",
+        "no-unreachable": "error",
+        "constructor-super": "warn",
+        "valid-typeof": "warn",
+        "no-debugger": "error",
+        "no-console": "off",
+        "padding-line-between-statements": [
+            "error",
+            {
+                "blankLine": "any",
+                "prev": [
+                    "const",
+                    "let",
+                    "var"
+                ],
+                "next": [
+                    "const",
+                    "let",
+                    "var"
+                ]
+            }
+        ],
+        "@typescript-eslint/prefer-interface": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "typescript-eslint/no-empty-interface": "off",
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    ["parent", "sibling", "index"]
+                ],
+                "pathGroupsExcludedImportTypes": ["builtin"],
+                "newlines-between": "always"
+            }
+        ],
+        "import/no-commonjs": "error",
+        "unicorn/prefer-node-protocol": "error",
+        "unicorn/prefer-module": "error",
+        "@typescript-eslint/ban-types": "off"
+    }
+}

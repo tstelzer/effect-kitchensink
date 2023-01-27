@@ -1,0 +1,23 @@
+node_modules/
+dist/
+bin/
+*.json
+*.md
+*.properties
+*.bowerrc
+*.dist
+*.png
+*.jpg
+*.gif
+jest.config.js
+LICENSE
+
+*.yml
+*.pem
+
+# Include configuration files
+!.eslintrc.json
+!.prettierrc.json
+!esbuild.js
+!tsconfig.*
+!package.json

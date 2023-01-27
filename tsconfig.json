@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "allowJs": false,
+        "checkJs": false,
+        "declarationDir": "build/dts",
+        "outDir": "build/esm",
+        "rootDir": "src",
+        "tsBuildInfoFile": "build/tsbuildinfo/tsbuildinfo"
+    },
+    "include": [
+        "src/**/*.ts"
+    ]
+}
