@@ -1,10 +1,12 @@
 {
     "name": "@tstelzer/effect-prelude",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "type": "module",
     "license": "MIT",
     "sideEffects": false,
     "types": "./build/dts/index.d.ts",
+    "author": "Timm Stelzer <timmstelzer@gmail.com>",
+    "private": false,
     "exports": {
         "types": "./build/dts/index.d.ts",
         "import": "./build/esm/index.js",
