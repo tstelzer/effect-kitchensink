@@ -15,6 +15,17 @@ runs:
         yarn config set npmAlwaysAuth true
         yarn config set npmAuthToken ${{inputs.AUTH_TOKEN}}
       shell: bash
+    - name: get yarn cache directory path
+      id: yarn-cache-dir-path
+      shell: bash
+      run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+    - name: restore yarn cache
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: yarn-cache-folder-${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}
+        restore-keys: |
+          yarn-cache-folder-
     - name: install dependencies
       run: yarn install --frozen-lockfile --immutable
       shell: bash
