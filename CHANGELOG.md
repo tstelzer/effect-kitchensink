@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/tstelzer/effect-kitchensink/compare/1.2.0...1.3.0) (2023-01-28)
+
+
+### Features
+
+* add mongodb resource ([b4e723e](https://github.com/tstelzer/effect-kitchensink/commit/b4e723e919829136ac7d31651e38e46c1082ceff))
+
 # [1.2.0](https://github.com/tstelzer/effect-kitchensink/compare/1.1.0...1.2.0) (2023-01-28)
 
 
