@@ -16,6 +16,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+          cache: 'yarn'
       - uses: ./.github/actions/setup-yarn
         with:
           AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
