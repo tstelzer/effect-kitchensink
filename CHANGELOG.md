@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/tstelzer/effect-kitchensink/compare/1.1.0...1.2.0) (2023-01-28)
+
+
+### Features
+
+* remove dependency on effect prelude ([2eb72e7](https://github.com/tstelzer/effect-kitchensink/commit/2eb72e753ac7c1dd4ab89db32b7a31a60caab146))
+
 # [1.1.0](https://github.com/tstelzer/effect-kitchensink/compare/1.0.0...1.1.0) (2023-01-28)
 
 
