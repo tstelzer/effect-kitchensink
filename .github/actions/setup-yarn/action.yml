@@ -15,6 +15,7 @@ runs:
         yarn config set npmAlwaysAuth true
         yarn config set npmAuthToken ${{inputs.AUTH_TOKEN}}
       shell: bash
+    # fixing yarn cache, see https://github.com/actions/setup-node/issues/488
     - name: get yarn cache directory path
       id: yarn-cache-dir-path
       shell: bash
@@ -27,5 +28,5 @@ runs:
         restore-keys: |
           yarn-cache-folder-
     - name: install dependencies
-      run: yarn install --frozen-lockfile --immutable
+      run: yarn install --immutable-cache
       shell: bash
