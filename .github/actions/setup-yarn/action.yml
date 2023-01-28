@@ -1,0 +1,20 @@
+name: setup-yarn
+
+inputs:
+  AUTH_TOKEN:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    # Yarn2+ ignores the github action .npmrc and .yarnrc, so we have to manually set that up
+    # see https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#yarn2-configuration
+    - name: setup .yarnrc.yml
+      run: |
+        yarn config set npmRegistryServer "https://registry.npmjs.org"
+        yarn config set npmAlwaysAuth true
+        yarn config set npmAuthToken ${{inputs.AUTH_TOKEN}}
+      shell: bash
+    - name: install dependencies
+      run: yarn install --frozen-lockfile --immutable
+      shell: bash
