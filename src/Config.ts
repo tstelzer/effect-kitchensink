@@ -1,29 +1,25 @@
-import {z} from 'zod';
 import {pipe, Layer, Effect} from 'effect';
 import {Tag} from '@fp-ts/data/Context';
 import createDeepMerge from '@fastify/deepmerge';
 
-import {Parser} from './zod.js';
+import type {Parser} from './Parser.js';
 import {readJsonSync} from './fs.js';
 
 const mergeDeep = createDeepMerge();
 
-export function createLayer<T>({
+export function createLayer<E, T>({
     tag,
-    fileParser,
+    parseFile,
     filePath,
-    envParser,
+    parseEnv,
     defaults,
 }: {
     tag: Tag<T>,
-    fileParser?: z.ZodType<T, z.ZodTypeDef, unknown>;
+    parseFile?: Parser<E, T>;
     filePath?: string;
-    envParser?: z.ZodType<T, z.ZodTypeDef, unknown>;
+    parseEnv?: Parser<E, T>;
     defaults?: Partial<T>;
-}): Layer.Layer<never, Error, T> {
-    const parseFile =  (filePath !== undefined && fileParser !== undefined) ? Parser.fromZod(fileParser) : undefined;
-    const parseEnv = envParser !== undefined ? Parser.fromZod(envParser) : undefined;
-
+}): Layer.Layer<never, E | Error, T> {
     return Layer.fromEffect<T>(tag)(
             Effect.gen(function* ($) {
                 const fromFile = (parseFile !== undefined && filePath !== undefined) ? yield* $(
