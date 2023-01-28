@@ -1,10 +1,10 @@
-
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 import {parse as _parseCSV} from 'csv-parse/sync';
-import {Effect, pipe} from 'effect';
+import * as Effect from '@effect/io/Effect';
+import {pipe} from '@fp-ts/core/Function';
 
 /**
  * @example
@@ -26,7 +26,7 @@ export const readJsonSync = (filePath: string) =>
         Effect.flatMap(s =>
             Effect.tryCatch(
                 () => JSON.parse(s),
-                e => e as Error
+                e => e as Error,
             ),
         ),
     );
@@ -45,7 +45,7 @@ export function readCsvSync(m: {
                         columns: true,
                         skip_empty_lines: true,
                     }),
-                e => e as Error
+                e => e as Error,
             ),
         ),
     );

@@ -1165,24 +1165,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@effect/io@npm:0.0.32":
-  version: 0.0.32
-  resolution: "@effect/io@npm:0.0.32"
+"@effect/io@npm:0.0.66":
+  version: 0.0.66
+  resolution: "@effect/io@npm:0.0.66"
   dependencies:
-    "@effect/printer": ~0.1.11
-    "@fp-ts/core": ~0.0.9
-    "@fp-ts/data": ~0.0.22
-  checksum: 625912e605bacbb0b7dd6e0f5f4a722ba31da65d476485dff25b68b3f76eb96b831c304a2aa146c6b72f294ce97c21dea96492028de2738ad881404c445a6c87
-  languageName: node
-  linkType: hard
-
-"@effect/printer@npm:0.1.11":
-  version: 0.1.11
-  resolution: "@effect/printer@npm:0.1.11"
-  dependencies:
-    "@fp-ts/core": ~0.0.9
-    "@fp-ts/data": ~0.0.22
-  checksum: 979e617caa2f99e21f39e6f11bb4df74a234b79cc5100397d9b6179b5917675e9f4ca15339a81a804180d311604ba0ac35da8d728bf30d8d5781da40754b9915
+    "@fp-ts/core": ~0.0.11
+    "@fp-ts/data": ~0.0.40
+  checksum: ce23430fb0c996c258559672acd52fc25e1e62ae83ce38d43fa7b5e51b102ab73467ee06a82e5f9029cb120dade6ea367609f4281c5476623cf122f5971d1fd6
   languageName: node
   linkType: hard
 
@@ -1221,10 +1210,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fp-ts/core@npm:0.0.9":
-  version: 0.0.9
-  resolution: "@fp-ts/core@npm:0.0.9"
-  checksum: ed98569b1c5454cdbdab07eef87ea5bb4ca55be28930ae66b35e377a44592bf89ee8e5e42a7a6098c91aa503b886d702707caad5edeaad7325b00d6094256dc2
+"@fp-ts/core@npm:0.1.1":
+  version: 0.1.1
+  resolution: "@fp-ts/core@npm:0.1.1"
+  checksum: f6b6a88cfde7c8ab4138a518dc18c3a93815fe841fc0ddc1c51256bd441451811982d6ea23d41e5452cc7e224c483b6a617f052117b9011b16f9669187dc1ef4
   languageName: node
   linkType: hard
 
@@ -1234,27 +1223,6 @@ __metadata:
   dependencies:
     "@fp-ts/core": ~0.0.9
   checksum: 5c3d5f9c127fa5a989762d3dd70caeec3294c5bf3aac3bf9fd5bbe46b7f3ab54766f1540050e0d399d184c2ca9495690ab70384e50627a3724d9e1ee6167b674
-  languageName: node
-  linkType: hard
-
-"@fp-ts/optic@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@fp-ts/optic@npm:0.0.5"
-  dependencies:
-    "@fp-ts/core": ~0.0.9
-    "@fp-ts/data": ~0.0.22
-  checksum: 879cb359d1c6885fc3739c56a60680ef4c736ecf94304e48ca47d1cfbb374accc89ec57110bacf18dc2696a3a728ac7e8f3a16cc72fc7dce35cc9da55786c239
-  languageName: node
-  linkType: hard
-
-"@fp-ts/schema@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@fp-ts/schema@npm:0.0.5"
-  dependencies:
-    "@fp-ts/core": ~0.0.9
-    "@fp-ts/data": ~0.0.22
-    fast-check: ^3.3.0
-  checksum: 41ff5a9fc810dc48d12848b410160d9fd9d52612224d0c12b5cc19145e87090cce3c77fe8c96585aaee5895676a3718d2240ac26c4570952086eb2d3886dd537
   languageName: node
   linkType: hard
 
@@ -1880,7 +1848,9 @@ __metadata:
     "@babel/cli": ^7.20.7
     "@babel/core": ^7.20.12
     "@babel/plugin-transform-modules-commonjs": ^7.20.11
+    "@effect/io": ^0.0.66
     "@fastify/deepmerge": ^1.3.0
+    "@fp-ts/core": 0.1.1
     "@semantic-release/changelog": ^6.0.2
     "@semantic-release/git": ^10.0.1
     "@types/node": ^18.11.18
@@ -1890,7 +1860,6 @@ __metadata:
     babel-plugin-annotate-pure-calls: ^0.4.0
     concurrently: ^7.6.0
     csv-parse: ^5.3.3
-    effect: 2.0.0-next.13
     eslint: ^8.32.0
     eslint-config-prettier: ^8.6.0
     eslint-plugin-import: ^2.27.5
@@ -3138,20 +3107,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"effect@npm:2.0.0-next.13":
-  version: 2.0.0-next.13
-  resolution: "effect@npm:2.0.0-next.13"
-  dependencies:
-    "@effect/io": 0.0.32
-    "@effect/printer": 0.1.11
-    "@fp-ts/core": 0.0.9
-    "@fp-ts/data": 0.0.22
-    "@fp-ts/optic": 0.0.5
-    "@fp-ts/schema": 0.0.5
-  checksum: c59ee18dfd315886ce3bdb8bf915b42740b768a36403bd1b171badaf2f985569aaa0a5cb9cf159cd4eff67d6942293f0c54ad1f7fe17aeec73f7da6bbc19e6fc
-  languageName: node
-  linkType: hard
-
 "electron-to-chromium@npm:^1.4.251":
   version: 1.4.284
   resolution: "electron-to-chromium@npm:1.4.284"
@@ -3603,15 +3558,6 @@ __metadata:
     signal-exit: ^3.0.7
     strip-final-newline: ^3.0.0
   checksum: 1a4af799839134f5c72eb63d525b87304c1114a63aa71676c91d57ccef2e26f2f53e14c11384ab11c4ec479be1efa83d11c8190e00040355c2c5c3364327fa8e
-  languageName: node
-  linkType: hard
-
-"fast-check@npm:^3.3.0":
-  version: 3.6.2
-  resolution: "fast-check@npm:3.6.2"
-  dependencies:
-    pure-rand: ^6.0.0
-  checksum: 9dac8c2720ca3f87c28f95f880b9737b6dde82f15f1c1b8b73d2bf115c7cff3817ccb5d6c579e5cd5bae0667f0c17c5cee93fd76780e4e7105e03c1112f14031
   languageName: node
   linkType: hard
 
@@ -6455,13 +6401,6 @@ __metadata:
   version: 2.3.0
   resolution: "punycode@npm:2.3.0"
   checksum: 39f760e09a2a3bbfe8f5287cf733ecdad69d6af2fe6f97ca95f24b8921858b91e9ea3c9eeec6e08cede96181b3bb33f95c6ffd8c77e63986508aa2e8159fa200
-  languageName: node
-  linkType: hard
-
-"pure-rand@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "pure-rand@npm:6.0.0"
-  checksum: ad1378d0a4859482d053a5264b2b485b445ece4bbc56f8959c233ea678b81ac2d613737925d496ded134eff5f29cc5546bf7492b6bce319ee27bebbad8a0c612
   languageName: node
   linkType: hard
 

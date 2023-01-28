@@ -1,6 +1,8 @@
-import {pipe, Layer, Effect} from 'effect';
-import {Tag} from '@fp-ts/data/Context';
+import * as Context from '@fp-ts/data/Context';
 import createDeepMerge from '@fastify/deepmerge';
+import * as Layer from '@effect/io/Layer';
+import * as Effect from '@effect/io/Effect';
+import {pipe} from '@fp-ts/core/Function';
 
 import type {Parser} from './Parser.js';
 import {readJsonSync} from './fs.js';
@@ -14,21 +16,29 @@ export function createLayer<E, T>({
     parseEnv,
     defaults,
 }: {
-    tag: Tag<T>,
+    tag: Context.Tag<T>;
     parseFile?: Parser<E, T>;
     filePath?: string;
     parseEnv?: Parser<E, T>;
     defaults?: Partial<T>;
 }): Layer.Layer<never, E | Error, T> {
-    return Layer.fromEffect<T>(tag)(
-            Effect.gen(function* ($) {
-                const fromFile = (parseFile !== undefined && filePath !== undefined) ? yield* $(
-                    pipe(readJsonSync(filePath), Effect.flatMap(parseFile)),
-                ) : {};
+    return Layer.effect(
+        tag,
+        Effect.gen(function* ($) {
+            const fromFile =
+                parseFile !== undefined && filePath !== undefined
+                    ? yield* $(
+                          pipe(
+                              readJsonSync(filePath),
+                              Effect.flatMap(parseFile),
+                          ),
+                      )
+                    : {};
 
-                const fromEnv = parseEnv !== undefined ? yield* $(parseEnv(process.env)) : {};
+            const fromEnv =
+                parseEnv !== undefined ? yield* $(parseEnv(process.env)) : {};
 
-                return mergeDeep(mergeDeep(defaults, fromFile), fromEnv) as T;
-            }),
-        );
+            return mergeDeep(mergeDeep(defaults, fromFile), fromEnv) as T;
+        }),
+    );
 }
