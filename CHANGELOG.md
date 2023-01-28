@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/tstelzer/effect-kitchensink/compare/1.0.0...1.1.0) (2023-01-28)
+
+
+### Features
+
+* **Config:** remove dependency on zod ([6888fd3](https://github.com/tstelzer/effect-kitchensink/commit/6888fd382d8ef4ea1c817f4a70927f04c81ac045))
+
 # 1.0.0 (2023-01-28)
 
 
