@@ -1,6 +1,6 @@
 {
     "name": "@tstelzer/effect-kitchensink",
-    "version": "0.0.6",
+    "version": "1.0.0",
     "type": "module",
     "license": "MIT",
     "sideEffects": false,
