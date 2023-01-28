@@ -20,6 +20,7 @@
         "clean": "rimraf build",
         "compile": "tsc --build tsconfig.json",
         "build:cjs": "babel build/esm --config-file ./.babel.cjs.json --out-dir build/cjs --out-file-extension .js --source-maps",
+        "build": "yarn clean && yarn compile && yarn build:cjs",
         "lint": "eslint src/**/*.ts"
     },
     "devDependencies": {
