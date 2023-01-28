@@ -7,6 +7,9 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
     # Yarn2+ ignores the github action .npmrc and .yarnrc, so we have to manually set that up
     # see https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#yarn2-configuration
     - name: setup .yarnrc.yml
@@ -18,15 +21,15 @@ runs:
     # fixing yarn cache, see https://github.com/actions/setup-node/issues/488
     - name: get yarn cache directory path
       id: yarn-cache-dir-path
-      shell: bash
-      run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+      run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
     - name: restore yarn cache
-      uses: actions/cache@v3
+      uses: actions/cache@v2
+      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
         key: yarn-cache-folder-${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}
         restore-keys: |
           yarn-cache-folder-
     - name: install dependencies
-      run: yarn install --immutable-cache
+      run: yarn install --immutable
       shell: bash
