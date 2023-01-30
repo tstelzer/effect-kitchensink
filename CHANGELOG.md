@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/tstelzer/effect-kitchensink/compare/1.3.0...1.4.0) (2023-01-30)
+
+
+### Bug Fixes
+
+* latest fs changes to Config ([c3b3309](https://github.com/tstelzer/effect-kitchensink/commit/c3b33091e9fba5e0edc21fdc878d95e07b073088))
+
+
+### Features
+
+* add http module ([8ac4e5e](https://github.com/tstelzer/effect-kitchensink/commit/8ac4e5ec41e7427635f59530f00bb93a84bc494f))
+* rewrite fs module to promise based ([8d5726e](https://github.com/tstelzer/effect-kitchensink/commit/8d5726e9ada11a8e745139532dce6634d27ffbfc))
+
 # [1.3.0](https://github.com/tstelzer/effect-kitchensink/compare/1.2.0...1.3.0) (2023-01-28)
 
 
