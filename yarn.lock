@@ -1165,7 +1165,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@effect/io@npm:0.0.66":
+"@effect/io@npm:^0.0.66":
   version: 0.0.66
   resolution: "@effect/io@npm:0.0.66"
   dependencies:
@@ -1210,19 +1210,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fp-ts/core@npm:0.1.1":
+"@fp-ts/core@npm:0.1.1, @fp-ts/core@npm:~0.1.1":
   version: 0.1.1
   resolution: "@fp-ts/core@npm:0.1.1"
   checksum: f6b6a88cfde7c8ab4138a518dc18c3a93815fe841fc0ddc1c51256bd441451811982d6ea23d41e5452cc7e224c483b6a617f052117b9011b16f9669187dc1ef4
   languageName: node
   linkType: hard
 
-"@fp-ts/data@npm:0.0.22":
-  version: 0.0.22
-  resolution: "@fp-ts/data@npm:0.0.22"
+"@fp-ts/core@npm:~0.0.11":
+  version: 0.0.11
+  resolution: "@fp-ts/core@npm:0.0.11"
+  checksum: d383a6bbbe716801384156d088d121722f06c1ac8bf815a9a8342ba7ce90a4ebed01e197be85032a3c7fe9ddcb5118d28a7a8d30febce87707853e007338703e
+  languageName: node
+  linkType: hard
+
+"@fp-ts/data@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@fp-ts/data@npm:0.1.1"
   dependencies:
-    "@fp-ts/core": ~0.0.9
-  checksum: 5c3d5f9c127fa5a989762d3dd70caeec3294c5bf3aac3bf9fd5bbe46b7f3ab54766f1540050e0d399d184c2ca9495690ab70384e50627a3724d9e1ee6167b674
+    "@fp-ts/core": ~0.1.1
+  checksum: 0775f205fe35b171b1182f7c55650e7d3c6dfda1b3c9a21d2795b7c6e7c07b740c690246f93b6e1411cc2197518881a66d59754d11271689a13c03284def5b66
+  languageName: node
+  linkType: hard
+
+"@fp-ts/data@npm:~0.0.40":
+  version: 0.0.41
+  resolution: "@fp-ts/data@npm:0.0.41"
+  dependencies:
+    "@fp-ts/core": ~0.0.11
+  checksum: edea461ae402f9c1857451808e16cf84c9476a795e9fa26a54df2c4a7dca5e4a179cf9371f129b8dc8f9b174b973ffc3d1f74eff2a17fc504cd76596c2cbefef
   languageName: node
   linkType: hard
 
@@ -1851,6 +1867,7 @@ __metadata:
     "@effect/io": ^0.0.66
     "@fastify/deepmerge": ^1.3.0
     "@fp-ts/core": 0.1.1
+    "@fp-ts/data": ^0.1.1
     "@semantic-release/changelog": ^6.0.2
     "@semantic-release/git": ^10.0.1
     "@types/node": ^18.11.18
@@ -1875,6 +1892,7 @@ __metadata:
     semantic-release-yarn: ^0.3.1
     type-fest: ^3.5.3
     typescript: ^4.9.4
+    undici: ^5.16.0
     zod: ^3.20.2
   languageName: unknown
   linkType: soft
@@ -2454,6 +2472,15 @@ __metadata:
   dependencies:
     semver: ^7.0.0
   checksum: 66d204657fe36522822a95b288943ad11b58f5eaede235b11d8c4edaa28ce4800087d44a2681524c340494aadb120a0068011acabe99d30e8f11a7d826d83515
+  languageName: node
+  linkType: hard
+
+"busboy@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "busboy@npm:1.6.0"
+  dependencies:
+    streamsearch: ^1.1.0
+  checksum: 32801e2c0164e12106bf236291a00795c3c4e4b709ae02132883fe8478ba2ae23743b11c5735a0aae8afe65ac4b6ca4568b91f0d9fed1fdbc32ede824a73746e
   languageName: node
   linkType: hard
 
@@ -7133,6 +7160,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"streamsearch@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "streamsearch@npm:1.1.0"
+  checksum: 1cce16cea8405d7a233d32ca5e00a00169cc0e19fbc02aa839959985f267335d435c07f96e5e0edd0eadc6d39c98d5435fb5bbbdefc62c41834eadc5622ad942
+  languageName: node
+  linkType: hard
+
 "string-width@npm:^1.0.2 || 2 || 3 || 4, string-width@npm:^4.1.0, string-width@npm:^4.2.0, string-width@npm:^4.2.3":
   version: 4.2.3
   resolution: "string-width@npm:4.2.3"
@@ -7600,6 +7634,15 @@ __metadata:
   version: 2.0.5
   resolution: "undefsafe@npm:2.0.5"
   checksum: f42ab3b5770fedd4ada175fc1b2eb775b78f609156f7c389106aafd231bfc210813ee49f54483d7191d7b76e483bc7f537b5d92d19ded27156baf57592eb02cc
+  languageName: node
+  linkType: hard
+
+"undici@npm:^5.16.0":
+  version: 5.16.0
+  resolution: "undici@npm:5.16.0"
+  dependencies:
+    busboy: ^1.6.0
+  checksum: bc22e797cbf469351713c88af33e65e21952a75f431b78b0e75fb2411426ab38b888ec0761d4b81eadf8f6e8872ed23fb75641cc7319c6a7f08bd083899fa1cc
   languageName: node
   linkType: hard
 
