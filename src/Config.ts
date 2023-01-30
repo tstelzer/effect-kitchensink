@@ -5,7 +5,7 @@ import * as Effect from '@effect/io/Effect';
 import {pipe} from '@fp-ts/core/Function';
 
 import type {Parser} from './Parser.js';
-import {readJsonSync} from './fs.js';
+import {FileDoesNotExistError, readJson} from './fs.js';
 
 const mergeDeep = createDeepMerge();
 
@@ -21,17 +21,14 @@ export function createLayer<E, T>({
     filePath?: string;
     parseEnv?: Parser<E, T>;
     defaults?: Partial<T>;
-}): Layer.Layer<never, E | Error, T> {
+}): Layer.Layer<never, E | FileDoesNotExistError, T> {
     return Layer.effect(
         tag,
         Effect.gen(function* ($) {
             const fromFile =
                 parseFile !== undefined && filePath !== undefined
                     ? yield* $(
-                          pipe(
-                              readJsonSync(filePath),
-                              Effect.flatMap(parseFile),
-                          ),
+                          pipe(readJson(filePath), Effect.flatMap(parseFile)),
                       )
                     : {};
 
