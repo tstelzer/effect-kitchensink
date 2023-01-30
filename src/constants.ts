@@ -1,1 +1,1 @@
-export const rootKey = '@tstelzer/effect-prelude' as const;
+export const rootKey = '@tstelzer/effect-kitchensink' as const;
