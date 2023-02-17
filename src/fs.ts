@@ -31,7 +31,16 @@ export const FileDoesNotExistError = createTagged<FileDoesNotExistError>(
     FileDoesNotExistErrorTag,
 );
 
-export type FileSystemError = FileDoesNotExistError;
+export interface IsDirectoryError extends Data.Case {
+    _tag: typeof IsDirectoryErrorTag;
+    filePath: string;
+}
+
+const IsDirectoryErrorTag = `${rootKey}/fs/IsDirectoryError` as const;
+export const IsDirectoryError =
+    createTagged<IsDirectoryError>(IsDirectoryErrorTag);
+
+export type FileSystemError = FileDoesNotExistError | IsDirectoryError;
 
 // =============================================================================
 // Util
@@ -40,29 +49,39 @@ export type FileSystemError = FileDoesNotExistError;
 const isENOENT = (e: unknown) =>
     typeof e === 'object' && e !== null && 'code' in e && e?.code === 'ENOENT';
 
-/**
- * Wrapper around promise-based `writeFile`. Implicitly creates directory.
- */
+const isEISDIR = (e: unknown) =>
+    typeof e === 'object' && e !== null && 'code' in e && e?.code === 'EISDIR';
+
+/** Wrapper around promise-based `writeFile`. */
+export function writeFile(
+    filePath: string,
+    data: unknown,
+): E.Effect<never, FileSystemError, void> {
+    return E.tryCatchPromise(
+        () =>
+            fs.writeFile(filePath, JSON.stringify(data), {
+                encoding: 'utf8',
+            }),
+        e => {
+            if (isENOENT(e)) {
+                return FileDoesNotExistError.create({filePath});
+            }
+            if (isEISDIR(e)) {
+                return IsDirectoryError.create({filePath});
+            }
+            throw e;
+        },
+    );
+}
+
+/** Wrapper around promise-based `writeFile`. Implicitly creates directory. */
 export function writeFileRecursive(
     filePath: string,
     data: unknown,
 ): E.Effect<never, FileSystemError, void> {
     return pipe(
         E.promise(() => fs.mkdir(path.basename(filePath), {recursive: true})),
-        E.flatMap(() =>
-            E.tryCatchPromise(
-                () =>
-                    fs.writeFile(filePath, JSON.stringify(data), {
-                        encoding: 'utf8',
-                    }),
-                e => {
-                    if (isENOENT(e)) {
-                        return FileDoesNotExistError.create({filePath});
-                    }
-                    throw e;
-                },
-            ),
-        ),
+        E.flatMap(() => writeFile(filePath, data)),
     );
 }
 
