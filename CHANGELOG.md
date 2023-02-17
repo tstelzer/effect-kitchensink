@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/tstelzer/effect-kitchensink/compare/1.4.0...1.5.0) (2023-02-17)
+
+
+### Features
+
+* add writeFile ([0125fe7](https://github.com/tstelzer/effect-kitchensink/commit/0125fe7a49f3ab4e9664263856f53c58496cf25b))
+* remove Config ([2846a57](https://github.com/tstelzer/effect-kitchensink/commit/2846a5719c813e3465d3e898ef363fcb3db668b8))
+
 # [1.4.0](https://github.com/tstelzer/effect-kitchensink/compare/1.3.0...1.4.0) (2023-01-30)
 
 
