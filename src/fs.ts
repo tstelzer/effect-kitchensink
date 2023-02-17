@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-import * as Data from '@fp-ts/data/Data';
+import * as Data from '@effect/data/Data';
 import * as E from '@effect/io/Effect';
 import * as Effect from '@effect/io/Effect';
 import {parse as _parseCSV} from 'csv-parse/sync';
