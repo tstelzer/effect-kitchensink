@@ -40,10 +40,11 @@ t.describe('stream', () => {
                 Stream.runCollect,
                 Effect.runPromise,
             );
+            // FIXME
             t.expect(empty).toEqual(Chunk.fromIterable(['']));
         });
 
-        t.test.only.each<{input: string, expected: string[], options?: _.LinesOptions}>([
+        t.test.each<{input: string, expected: string[], options?: _.LinesOptions}>([
             {input: 'a', expected: ['a']},
             {input: 'abc', expected: ['abc']},
             {input: 'a\nb\nc', expected: ['a', 'b', 'c']},
