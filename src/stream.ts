@@ -44,8 +44,6 @@ export function readLine(
     return pipe(
         FR.get(bufferRef),
         Effect.flatMap(previous => {
-            const _ = 'readLine';
-            // console.time(_);
             let buffer = '';
             let next: string | null;
 
@@ -58,13 +56,10 @@ export function readLine(
                         if (previous[i] === EOL) {
                             const rest = previous.slice(i + 1);
                             const value = previous.slice(0, i);
-                            // console.timeLog(_, 'early eol', {buffer, i, previous, rest, value});
-                            // console.timeEnd(_);
                             return pipe(FR.set<BufferRef>(rest)(bufferRef), Effect.map(() => value));
                         }
                     }
                     // No EOL in previous buffer.
-                    // console.timeLog(_, 'no early eol', {buffer, previous});
                     buffer = previous;
                 }
 
@@ -76,25 +71,17 @@ export function readLine(
                 // other than searching through the entire string, or checking
                 // at every character, both of which seem excessive.
                 if (bufferSize >= maxBufferSize) {
-                    // console.timeLog(_, 'overflow');
-                    // console.timeEnd(_);
                     return Effect.die(BufferOverflowError.create({bufferSize}));
                 }
 
-                // console.timeLog(_, 'read', {chunkSize});
                 next = stream.read(chunkSize);
                 if (next === null && buffer.length === 0) {
-                    // console.timeLog(_, 'eof');
-                    // console.timeEnd(_);
                     // EOF
                     return Effect.fail(Option.none());
                 } if (next === null && buffer.length > 0) {
-                    // console.timeLog(_, 'eof, eol', {buffer});
-                    // console.timeEnd(_);
                     // No more chunks, and we already know that the buffer has no EOL, so we leave.
                     return pipe(FR.set<BufferRef>(null)(bufferRef), Effect.map(() => buffer));
                 } else{
-                    // console.timeLog(_, '+', {buffer, next});
                     buffer += next;
                 }
 
@@ -102,12 +89,9 @@ export function readLine(
                     if (buffer[i] === EOL) {
                         const rest = buffer.slice(i + 1);
                         const value = buffer.slice(0, i);
-                        // console.timeLog(_, 'eol', {buffer, value, i, rest});
-                        // console.timeEnd(_);
                         return pipe(FR.set<BufferRef>(rest)(bufferRef), Effect.map(() => value));
                     }
                 }
-                // console.timeLog(_, 'empty chunk', {buffer});
             } while (next !== null);
 
             return Effect.die(new TypeError('Reached end of stream without producing a value. This is likely a bug in the library, please report this issue.'));
@@ -134,14 +118,7 @@ export function lines(
 
     return pipe(
         Effect.acquireRelease(
-            pipe(
-                Effect.sync(() => {
-                    const stream = createStream();
-                    stream.pause();
-                    return Effect.succeed(stream);
-                }),
-                Effect.flatten,
-            ),
+                Effect.sync(createStream),
             stream =>
                 Effect.sync(() => {
                     stream.removeAllListeners();
