@@ -1,3 +1,11 @@
+# [1.6.0](https://github.com/tstelzer/effect-kitchensink/compare/1.5.0...1.6.0) (2023-02-20)
+
+
+### Features
+
+* remove unused modules ([4fba3bf](https://github.com/tstelzer/effect-kitchensink/commit/4fba3bf4c7d302559d271b01e18e6af935401c71))
+* **stream:** add stream.lines ([1418e70](https://github.com/tstelzer/effect-kitchensink/commit/1418e709823336882aa47e7f64a37c91a4bec933))
+
 # [1.5.0](https://github.com/tstelzer/effect-kitchensink/compare/1.4.0...1.5.0) (2023-02-17)
 
 
