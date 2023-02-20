@@ -9,7 +9,9 @@ jobs:
   build-and-deploy:
     if: |
       !contains(fromJson('["ci skip","skip ci"]'), github.event.head_commit.message) &&
-      !startsWith(github.event.head_commit.message, 'docs')
+      !startsWith(github.event.head_commit.message, 'docs') &&
+      !startsWith(github.event.head_commit.message, 'build') &&
+      !startsWith(github.event.head_commit.message, 'test')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
