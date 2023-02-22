@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/tstelzer/effect-kitchensink/compare/1.6.0...1.7.0) (2023-02-22)
+
+
+### Features
+
+* pin effect dependencies ([b4dc141](https://github.com/tstelzer/effect-kitchensink/commit/b4dc1418b247c777bc0f83ea38e67c217d257809))
+
 # [1.6.0](https://github.com/tstelzer/effect-kitchensink/compare/1.5.0...1.6.0) (2023-02-20)
 
 
