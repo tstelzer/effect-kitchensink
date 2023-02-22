@@ -3,11 +3,11 @@ import type {Readable} from 'node:stream';
 
 import * as Data from '@effect/data/Data';
 import * as Effect from '@effect/io/Effect';
-import * as Option from '@fp-ts/core/Option';
+import * as Option from '@effect/data/Option';
 import * as FR from '@effect/io/FiberRef';
 import * as Stream from '@effect/stream/Stream';
-import type {LazyArg} from '@fp-ts/core/Function';
-import {pipe} from '@fp-ts/core/Function';
+import type {LazyArg} from '@effect/data/Function';
+import {pipe} from '@effect/data/Function';
 
 import {rootKey} from './constants.js';
 import {createTagged} from './internal/Error.js';
@@ -56,7 +56,10 @@ export function readLine(
                         if (previous[i] === EOL) {
                             const rest = previous.slice(i + 1);
                             const value = previous.slice(0, i);
-                            return pipe(FR.set<BufferRef>(rest)(bufferRef), Effect.map(() => value));
+                            return pipe(
+                                FR.set<BufferRef>(rest)(bufferRef),
+                                Effect.map(() => value),
+                            );
                         }
                     }
                     // No EOL in previous buffer.
@@ -78,10 +81,14 @@ export function readLine(
                 if (next === null && buffer.length === 0) {
                     // EOF
                     return Effect.fail(Option.none());
-                } if (next === null && buffer.length > 0) {
+                }
+                if (next === null && buffer.length > 0) {
                     // No more chunks, and we already know that the buffer has no EOL, so we leave.
-                    return pipe(FR.set<BufferRef>(null)(bufferRef), Effect.map(() => buffer));
-                } else{
+                    return pipe(
+                        FR.set<BufferRef>(null)(bufferRef),
+                        Effect.map(() => buffer),
+                    );
+                } else {
                     buffer += next;
                 }
 
@@ -89,12 +96,19 @@ export function readLine(
                     if (buffer[i] === EOL) {
                         const rest = buffer.slice(i + 1);
                         const value = buffer.slice(0, i);
-                        return pipe(FR.set<BufferRef>(rest)(bufferRef), Effect.map(() => value));
+                        return pipe(
+                            FR.set<BufferRef>(rest)(bufferRef),
+                            Effect.map(() => value),
+                        );
                     }
                 }
             } while (next !== null);
 
-            return Effect.die(new TypeError('Reached end of stream without producing a value. This is likely a bug in the library, please report this issue.'));
+            return Effect.die(
+                new TypeError(
+                    'Reached end of stream without producing a value. This is likely a bug in the library, please report this issue.',
+                ),
+            );
         }),
     );
 }
@@ -105,7 +119,25 @@ export type LinesOptions = {
 };
 
 /**
- * Takes a lazy utf8-encoded NodeJS.Readable, and returns a Stream of lines, i.e. EOL-delimited strings.
+ * Takes a lazy NodeJS.Readable, and returns a Stream of lines, i.e. EOL-delimited strings.
+ * @example
+ *
+ * ```ts
+ * import {Readable} from 'node:stream';
+ * import assert from 'node:assert';
+ *
+ * import {stream} from '@tstelzer/effect-kitchensink';
+ * import * as Chunk from '@effect/data/Chunk';
+ * import * as Stream from '@effect/stream/Stream';
+ *
+ * const result = await pipe(
+ *   stream.lines(() => Readable.from('a\nb\nc')),
+ *   Stream.runCollect,
+ *   Effect.runPromise,
+ * );
+ *
+ * assert.equal(result, Chunk.fromIterable(['a', 'b', 'c']));
+ * ```
  */
 export function lines(
     createStream: LazyArg<Readable>,
@@ -117,17 +149,15 @@ export function lines(
     const bufferRef = FR.unsafeMake('');
 
     return pipe(
-        Effect.acquireRelease(
-                Effect.sync(createStream),
-            stream =>
-                Effect.sync(() => {
-                    stream.removeAllListeners();
+        Effect.acquireRelease(Effect.sync(createStream), stream =>
+            Effect.sync(() => {
+                stream.removeAllListeners();
 
-                    if (!stream.closed) {
-                        FR.delete(bufferRef);
-                        stream.destroy();
-                    }
-                }),
+                if (!stream.closed) {
+                    FR.delete(bufferRef);
+                    stream.destroy();
+                }
+            }),
         ),
         Effect.map(stream =>
             Stream.async<never, ReadableError, Readable>(emit => {

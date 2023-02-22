@@ -1,5 +1,5 @@
 import * as E from '@effect/io/Effect';
-import {pipe} from '@fp-ts/core/Function';
+import {pipe} from '@effect/data/Function';
 import * as mongo from 'mongodb';
 
 export type Database = {client: mongo.MongoClient; db: mongo.Db};
