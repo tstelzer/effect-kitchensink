@@ -145,7 +145,7 @@ export function lines(
         chunkSize = DEFAULT_CHUNK_SIZE,
         maxBufferSize = DEFAULT_MAX_BUFFER_SIZE,
     }: LinesOptions = {},
-) {
+): Stream.Stream<never, ReadableError, string> {
     const bufferRef = FR.unsafeMake('');
 
     return pipe(
