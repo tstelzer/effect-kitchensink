@@ -119,7 +119,25 @@ export type LinesOptions = {
 };
 
 /**
- * Takes a lazy utf8-encoded NodeJS.Readable, and returns a Stream of lines, i.e. EOL-delimited strings.
+ * Takes a lazy NodeJS.Readable, and returns a Stream of lines, i.e. EOL-delimited strings.
+ * @example
+ *
+ * ```ts
+ * import {Readable} from 'node:stream';
+ * import assert from 'node:assert';
+ *
+ * import {stream} from '@tstelzer/effect-kitchensink';
+ * import * as Chunk from '@effect/data/Chunk';
+ * import * as Stream from '@effect/stream/Stream';
+ *
+ * const result = await pipe(
+ *   stream.lines(() => Readable.from('a\nb\nc')),
+ *   Stream.runCollect,
+ *   Effect.runPromise,
+ * );
+ *
+ * assert.equal(result, Chunk.fromIterable(['a', 'b', 'c']));
+ * ```
  */
 export function lines(
     createStream: LazyArg<Readable>,
