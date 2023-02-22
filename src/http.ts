@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import * as E from '@effect/io/Effect';
-import {pipe} from '@fp-ts/core/Function';
+import {pipe} from '@effect/data/Function';
 import * as Data from '@effect/data/Data';
 import type {RequestInfo, RequestInit, Response} from 'undici';
 
