@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/tstelzer/effect-kitchensink/compare/1.7.0...1.7.1) (2023-03-12)
+
+
+### Bug Fixes
+
+* stable nix dependencies ([7a20520](https://github.com/tstelzer/effect-kitchensink/commit/7a20520f5d6f258cd05c28a4e62f3d4646504b1a))
+
 # [1.7.0](https://github.com/tstelzer/effect-kitchensink/compare/1.6.0...1.7.0) (2023-02-22)
 
 
