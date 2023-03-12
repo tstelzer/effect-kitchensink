@@ -1166,29 +1166,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@effect/data@npm:0.2.0":
-  version: 0.2.0
-  resolution: "@effect/data@npm:0.2.0"
-  checksum: 1423eb4ec524d44030b52acf21d63cae0bd0bd79834076e7331ea35e9c2b13391c3afa0bb518ec092cc4a3e8432672250d491419ac91d4bc9e9dac16aa2aa1c4
+"@effect/data@npm:0.4.1":
+  version: 0.4.1
+  resolution: "@effect/data@npm:0.4.1"
+  checksum: 095d8e9ed77a3b1df9b65bce7f9348eed5664d519e9a8782f64c156db929b425743c2722817d50d532e6a1e037d4c9b59e345edff54cb89c43e7f906707e94af
   languageName: node
   linkType: hard
 
-"@effect/io@npm:0.3.0":
-  version: 0.3.0
-  resolution: "@effect/io@npm:0.3.0"
+"@effect/io@npm:0.7.0, @effect/io@npm:~0.7.0":
+  version: 0.7.0
+  resolution: "@effect/io@npm:0.7.0"
   dependencies:
-    "@effect/data": ~0.2.0
-  checksum: 7291d5776961f0ed25052fbb00eac4cf4e90c1b90fe2f66639afda75e1dcb14b27776c677e1839d6a192c96d3b527657f6a193b2edfe18c95c565b5196f55eb1
+    "@effect/data": ~0.3.2
+  checksum: 8619345043acf1ec1153e3bfaea659e477d6902fe87f413d09ebf50b89ad808105237657e531e2c11e22040c65c8e88596c48c806cc516feddfbc1fabf117aca
   languageName: node
   linkType: hard
 
-"@effect/stream@npm:0.4.0":
-  version: 0.4.0
-  resolution: "@effect/stream@npm:0.4.0"
+"@effect/stream@npm:0.7.0":
+  version: 0.7.0
+  resolution: "@effect/stream@npm:0.7.0"
   dependencies:
-    "@effect/data": ~0.1.3
-    "@effect/io": ~0.2.0
-  checksum: ddce451b4cb82b2108582464da20107aa86bb9502f65b2eb75107b01743969db9c83ef49798d432214ccbc5fd668eab6976b460df922d6e4a00eb1286a4b109b
+    "@effect/data": ~0.3.3
+    "@effect/io": ~0.7.0
+  checksum: 8cd0907c776f8b53fd4cbd734d9e896c99f4d27f54c3f4a7011d58136b1fcde4bb1afa020e8fabaf0d883658e4cc81795e6dc5c89ff61606d541f4f52e248324
   languageName: node
   linkType: hard
 
@@ -2003,13 +2003,13 @@ __metadata:
     "@babel/cli": ^7.21.0
     "@babel/core": ^7.21.0
     "@babel/plugin-transform-modules-commonjs": ^7.20.11
-    "@effect/data": 0.2.0
-    "@effect/io": 0.3.0
-    "@effect/stream": 0.4.0
+    "@effect/data": 0.4.1
+    "@effect/io": 0.7.0
+    "@effect/stream": 0.7.0
     "@fastify/deepmerge": ^1.3.0
     "@semantic-release/changelog": ^6.0.2
     "@semantic-release/git": ^10.0.1
-    "@types/node": ^18.14.0
+    "@types/node": ^18.15.0
     "@typescript-eslint/eslint-plugin": ^5.53.0
     "@typescript-eslint/parser": ^5.53.0
     "@typescript-eslint/typescript-estree": ^5.53.0
@@ -2075,10 +2075,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.14.0":
+"@types/node@npm:*":
   version: 18.14.0
   resolution: "@types/node@npm:18.14.0"
   checksum: d83fcf5e4ed544755dd9028f5cbb6b9d46235043159111bb2ad62223729aee581c0144a9f6df8ba73d74011db9ed4ebd7af2fd5e0996714e3beb508a5da8ac5c
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.15.0":
+  version: 18.15.0
+  resolution: "@types/node@npm:18.15.0"
+  checksum: d81372276dd5053b1743338b61a2178ff9722dc609189d01fc7d1c2acd539414039e0e4780678730514390dad3f29c366a28c29e8dbd5b0025651181f6dd6669
   languageName: node
   linkType: hard
 
